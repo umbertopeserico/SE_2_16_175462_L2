@@ -14,12 +14,19 @@ var items = [];
 
 // BEGIN data access functions: theese functions allow to edit the data structure
 
+/*
+ * This function gets all items added to list
+ */
+function getAllItems() {
+    return items;
+}
+
 /* 
  * This function adds an new item to the list
  */
 function addNewItem(item) {
     console.log("ADD NEW ITEM TO LIST: "+item.name+" + "+item.quantity);
-    items.push(item);
+    getAllItems().push(item);
 }
 
 /*
@@ -35,7 +42,7 @@ function increaseQuantity(item, quantity) {
  */
 function findItemByName(name) {
     var foundElem = null;
-    items.forEach(function (elem, index, array) {
+    getAllItems().forEach(function (elem, index, array) {
         if(elem.name.toUpperCase() == name.toUpperCase()) {
             foundElem = elem;
             console.log("ITEM ALREADY PRESENT: " +elem.name.toUpperCase()+" "+name.toUpperCase());
@@ -89,7 +96,7 @@ function drawTable() {
     console.log("DRAWING TABLE...");
     var tbody = document.getElementById("itemsTableTbody");
     tbody.innerHTML = "";
-    items.forEach(function(elem, index, array) {
+    getAllItems().forEach(function(elem, index, array) {
         var row = document.createElement("tr");
         var nameCell = document.createElement("td");
         var quantityCell = document.createElement("td");
@@ -111,7 +118,8 @@ function drawTable() {
  */
 function onLoadAction() {
     // This adds an element when the program starts
-    items.push(new item("T-Shirt", 1));
+    var firstItem = new item("T-Shirt", 1);
+    addNewItem(firstItem);
     
     // Draws the table when the page is loaded
     drawTable();
