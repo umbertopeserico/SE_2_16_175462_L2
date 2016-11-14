@@ -7,7 +7,7 @@ function showInsertForm() {
     var nameInput = document.getElementById("itemNameInput");
     nameInput.value = "";
     var quantityInput = document.getElementById("itemQuantityInput");
-    quantityInput = "";
+    quantityInput.value = "";
     form.style.display = "block";
 }
 
