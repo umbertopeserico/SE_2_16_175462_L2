@@ -56,3 +56,20 @@ function insertNewItemAction() {
     hideInsertForm();
     showInsertButton();
 }
+
+function updateLimitSize(size) {
+    var spanError = document.getElementById("updateLimitResult");
+    if(setLimit(size)) {
+        console.log("UPDATED SUCCESSFULL");
+        spanError.innerHTML = "Updated quantity";
+        setTimeout(function() {
+            spanError.innerHTML = "";
+        }, 2000);
+    } else {
+        console.log("UPDATED FAILURE");
+        spanError.innerHTML = "Invalid quantity";
+        setTimeout(function() {
+            spanError.innerHTML = "";
+        }, 2000);
+    }
+}
