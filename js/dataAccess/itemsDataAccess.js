@@ -1,5 +1,40 @@
 // this is the list containing items
 var items = [];
+var limit = 30;
+
+/*
+ * This function gets the actual limit of storage
+ */
+function getLimit() {
+    return limit;
+}
+
+/*
+ * This function sets the actual limit of storage
+ */
+function setLimit(size) {
+    if(validateLimit(size)) {
+        limit = size;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * This function gets the actual limit of storage
+ */
+function validateLimit(size) {
+    if(isNaN(size)) {
+        return false;
+    } else {
+        if(parseInt(size) <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 
 /*
  * This function gets all items added to list
@@ -15,11 +50,15 @@ function addNewItem(item) {
     console.log("ADD NEW ITEM TO LIST: "+item.name+" + "+item.quantity);
     if(validateItem(item)) {
         getAllItems().push(item);
+        console.log();
+        if(!validateQuantity(item)) {
+            getAllItems().pop(item);
+            return false;
+        }
         return true;
     } else {
         return false;
     }
-    
 }
 
 /*
@@ -30,6 +69,9 @@ function increaseQuantity(item, quantity) {
     var oldQuantity = item.quantity;
     item.quantity+=parseInt(quantity);
     if(validateItem(item)) {
+        if(!validateQuantity(item)) {
+            return false;
+        }
         return true;
     } else {
         item.quantity = oldQuantity;
@@ -72,6 +114,9 @@ function validateItem(item) {
     if(item.quantity <= 0) {
         item.errors.push("Item quantity can not be negative");
     }
+    //console.log(getActualQuantity());
+    console.log(getActualQuantity()+" "+item.quantity)
+    console.log(getActualQuantity()+item.quantity)
     
     if(item.errors.length == 0) {
         return true;
@@ -85,4 +130,28 @@ function validateItem(item) {
  */
 function getItemErrors(item) {
     return item.errors;
+}
+
+/*
+ * This function gets the actual quantity in storage
+ */
+function getActualQuantity() {
+    var counter = 0;
+    getAllItems().forEach(function (elem, index, array) {
+        counter += elem.quantity;
+    });
+    return parseInt(counter);
+}
+
+function validateQuantity(item) {
+    console.log("VALIDATING QUANTITY:");
+    console.log(getActualQuantity()+ " "+ limit)
+    if(getActualQuantity() > limit) {
+        console.log("VALIDATING QUANTITY: FALSE");
+        item.errors.push("Quantity is too big. Limit of " + limit + " reached");
+        return false;
+    } else {
+        console.log("VALIDATING QUANTITY: TRUE");
+        return true;
+    }
 }
