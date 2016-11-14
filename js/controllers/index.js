@@ -30,9 +30,21 @@ function insertNewItemAction() {
     console.log("NEW ITEM: "+newItem);
     if(newItem === null) {
         newItem = new item(nameInput.value, parseInt(quantityInput.value));
-        addNewItem(newItem);
+        if(!addNewItem(newItem)) {
+            var errors = "";
+            getItemErrors(newItem).forEach(function(elem, index, array){
+               errors += elem +="\n"; 
+            });
+            alert(errors);
+        }
     } else {
-        increaseQuantity(newItem, quantityInput.value);
+        if(!increaseQuantity(newItem, quantityInput.value)) {
+            var errors = "";
+            getItemErrors(newItem).forEach(function(elem, index, array){
+               errors += elem +="\n"; 
+            });
+            alert(errors);
+        }
     }
     
     drawTable();
