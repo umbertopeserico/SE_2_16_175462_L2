@@ -14,9 +14,11 @@ function getLimit() {
  */
 function setLimit(size) {
     if(validateLimit(size)) {
+        console.log("VALID QUANTITY");
         limit = size;
         return true;
     } else {
+        console.log("INVALID QUANTITY");
         return false;
     }
 }
@@ -25,7 +27,9 @@ function setLimit(size) {
  * This function gets the actual limit of storage
  */
 function validateLimit(size) {
+    console.log("SIZE:" +size)
     if(isNaN(size)) {
+        console.log("IS NAN QUANTITY");
         return false;
     } else {
         if(parseInt(size) <= 0) {
