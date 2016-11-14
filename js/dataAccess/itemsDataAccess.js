@@ -1,3 +1,6 @@
+// this is the list containing items
+var items = [];
+
 /*
  * This function gets all items added to list
  */
