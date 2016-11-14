@@ -2,4 +2,5 @@
 var item = function(name, quantity) {
     this.name = name;
     this.quantity = quantity;
+    this.errors = [];
 }
