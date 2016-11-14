@@ -11,12 +11,12 @@
     </head>
     <body>
         <h1>Products Manager</h1>
-        <table>
+        <table id="itemsTable">
             <thead>
                 <th>Item</th>
                 <th>Quantity</th>
             </thead>
-            <tbody>
+            <tbody id="itemsTableTbody">
                 <tr>
                     <td>Element 1</td>
                     <td>1</td>
@@ -26,7 +26,7 @@
         
         <br>
         
-        <button onclick="showInsertForm()" id="showNewItemForm">Insert new item</button>
+        <button onclick="showInsertFormAction()" id="showNewItemForm">Insert new item</button>
         
         <br>
         <br>
@@ -36,6 +36,7 @@
             <input id="itemNameInput" name="name" />
             <label for="quantity">Quantity</label>
             <input id="itemQuantityInput" name="quantity" />
+            <button onclick="insertNewItemAction()" type="button">Insert item</button>
         </form>
         
         <script type="text/javascript" src="js/application.js"></script>
