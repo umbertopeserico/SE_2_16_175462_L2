@@ -13,7 +13,13 @@ function getAllItems() {
  */
 function addNewItem(item) {
     console.log("ADD NEW ITEM TO LIST: "+item.name+" + "+item.quantity);
-    getAllItems().push(item);
+    if(validateItem(item)) {
+        getAllItems().push(item);
+        return true;
+    } else {
+        return false;
+    }
+    
 }
 
 /*
@@ -21,7 +27,15 @@ function addNewItem(item) {
  */
 function increaseQuantity(item, quantity) {
     console.log("INCREASE QUANTITY: "+item.quantity+" + "+quantity);
+    var oldQuantity = item.quantity;
     item.quantity+=parseInt(quantity);
+    if(validateItem(item)) {
+        return true;
+    } else {
+        item.quantity = oldQuantity;
+        return false;
+    }
+    
 }
 
 /*
@@ -37,4 +51,38 @@ function findItemByName(name) {
         }
     });
     return foundElem;
+}
+
+/*
+ * This function checks if an item is valid.
+ * If not, adds errors to item
+ */
+function validateItem(item) {
+    console.log("VALIDATING: ");
+    console.log("VALIDATING name: "+item.name);
+    item.errors = [];
+    if(item.name == "") {
+        item.errors.push("Item name can not be blank");
+    }
+    console.log("VALIDATING quantity: "+item.quantity);
+    if(isNaN(item.quantity)) {
+        item.errors.push("Item quantity must be a number");
+    }
+    item.quantity = parseInt(item.quantity);
+    if(item.quantity <= 0) {
+        item.errors.push("Item quantity can not be negative");
+    }
+    
+    if(item.errors.length == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * This function get the errors associated to an item after the call of validateItem(item)
+ */
+function getItemErrors(item) {
+    return item.errors;
 }
