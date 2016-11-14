@@ -1,0 +1,13 @@
+table {
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 3px 5px;
+    border: solid 1px black;
+}
+
+form#insertNewItemForm {
+    display: none;
+}
