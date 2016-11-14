@@ -1,8 +1,13 @@
 /*
  * This function sets the visibility of the insert form to block
+ + and cleans the form fields
  */
 function showInsertForm() {
     var form = document.getElementById("insertNewItemForm");
+    var nameInput = document.getElementById("itemNameInput");
+    nameInput.value = "";
+    var quantityInput = document.getElementById("itemQuantityInput");
+    quantityInput.value = "";
     form.style.display = "block";
 }
 
