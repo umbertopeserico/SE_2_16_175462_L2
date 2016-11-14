@@ -14,21 +14,31 @@ var items = [];
 
 // BEGIN data access functions: theese functions allow to edit the data structure
 
+/* 
+ * This function adds an new item to the list
+ */
 function addNewItem(item) {
+    console.log("ADD NEW ITEM TO LIST: "+item.name+" + "+item.quantity);
     items.push(item);
 }
 
+/*
+ * This function allows to increment the quantity of an object
+ */
 function increaseQuantity(item, quantity) {
     console.log("INCREASE QUANTITY: "+item.quantity+" + "+quantity);
     item.quantity+=parseInt(quantity);
 }
 
+/*
+ * This function searches if in the list an item is already present.
+ */
 function findItemByName(name) {
     var foundElem = null;
     items.forEach(function (elem, index, array) {
         if(elem.name.toUpperCase() == name.toUpperCase()) {
             foundElem = elem;
-            console.log("ALREADY PRESENT: " +elem.name.toUpperCase()+" "+name.toUpperCase());
+            console.log("ITEM ALREADY PRESENT: " +elem.name.toUpperCase()+" "+name.toUpperCase());
             return foundElem;
         }
     });
@@ -95,6 +105,18 @@ function drawTable() {
 
 
 // BEGIN controller functions
+
+/*
+ * This function is exectuted when the page is loaded
+ */
+function onLoadAction() {
+    // This adds an element when the program starts
+    items.push(new item("T-Shirt", 1));
+    
+    // Draws the table when the page is loaded
+    drawTable();
+}
+
 
 /*
  * This is the action of the button that shows the insert form
