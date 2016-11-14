@@ -2,6 +2,10 @@
  * This function is exectuted when the page is loaded
  */
 function onLoadAction() {
+    // Sets the limit in the view
+    var limitSizeInput = document.getElementById("limitSizeInput");
+    limitSizeInput.value = getLimit();
+    
     // This adds an element when the program starts
     var firstItem = new item("T-Shirt", 1);
     addNewItem(firstItem);

@@ -20,7 +20,10 @@
                 
             </tbody>
         </table>
-        
+        <br>
+        <label for="limitSize">Maximum quantity</label>
+        <input onchange="setLimit(this.value);" type="number" id="limitSizeInput" name="limitSize" />
+        <br>
         <br>
         
         <button onclick="showInsertFormAction()" id="showNewItemForm">Insert new item</button>
