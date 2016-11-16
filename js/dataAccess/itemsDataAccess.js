@@ -54,9 +54,8 @@ function addNewItem(item) {
     console.log("ADD NEW ITEM TO LIST: "+item.name+" + "+item.quantity);
     if(validateItem(item)) {
         getAllItems().push(item);
-        console.log();
         if(!validateQuantity(item)) {
-            getAllItems().pop(item);
+            //getAllItems().pop(item);
             return false;
         }
         return true;
@@ -152,7 +151,9 @@ function validateQuantity(item) {
     console.log(getActualQuantity()+ " "+ limit)
     if(getActualQuantity() > limit) {
         console.log("VALIDATING QUANTITY: FALSE");
-        item.errors.push("Quantity is too big. Limit of " + limit + " reached");
+        if(item!=null) {
+            item.errors.push("Quantity is too big. Limit of " + limit + " reached");
+        }
         return false;
     } else {
         console.log("VALIDATING QUANTITY: TRUE");
