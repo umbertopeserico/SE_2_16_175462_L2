@@ -19,6 +19,9 @@ function onLoadAction() {
  * This is the action of the button that shows the insert form
  */
 function showInsertFormAction() {
+    if(!validateQuantity(null)) {
+        alert("Quantity limit of "+getLimit()+" reached:");
+    }
     hideInsertButton();
     showInsertForm();
 }
